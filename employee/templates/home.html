@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="add" method="post">
+        {% csrf_token %}
+       Name: <input type="text" name="name"><br>
+       address: <input type="text" name="address"><br>
+       Age: <input type="text" name="age"><br>
+       <input type="submit" value="Add Employee"> <br>
+
+<p>
+    {{msg}} <br>
+</p>
+
+    </form>
+    <form action="display">
+        <input type="submit" value="display"> <br>
+        <table border="1">
+            <tr>
+                <td>EmpId</td>
+                <td>Name</td>
+                <td>Address</td>
+            </tr>
+            {% for i in emp %}
+            <tr>
+                <td>{{i.id}}</td>
+                <td>{{i.name}}</td>
+                <td>{{i.address}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+
+    <form action="del" method="POST">
+        {% csrf_token %}
+        name to delete:<input type="text" name="name"> <br>
+        <input type="submit" value="delete"> <br>
+        
+        {{msg}}
+    </form>
+    
+    <form action="update" method="POST">
+        {% csrf_token %}
+        Old name:<input type="text" name="oldname"> <br>
+        New name:<input type="text" name="newname"> <br>
+        <input type="submit" value="update"> <br>
+        <p>
+            {{msg1}}
+        </p>
+    </form>
+    <form action="logout" method="post">
+        {% csrf_token %}
+        logout
+        <input type="submit" value="Log Out">
+    </form>
+</body>
+</html>
